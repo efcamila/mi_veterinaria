@@ -1,0 +1,66 @@
+CREATE DATABASE `topicos`;
+
+
+CREATE TABLE `owners` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `phone_number` int(50) NOT NULL,
+  `creation_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `pets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `race` varchar(100) NOT NULL,
+  `age` int(2) NOT NULL,
+  `creation_date` date NOT NULL,
+  `death_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `veterinarians` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `speciality` varchar(100) NOT NULL,
+  `phone_number` int(50) NOT NULL,
+  `admission_date` date NOT NULL,
+  `egress_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `owners_pets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner_id` int(11) NOT NULL,
+  `pet_id` int(11) NOT NULL,
+  `motive_end_relation_id` int(11) DEFAULT NULL,
+  `date_end_relation` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `owner_id` (`owner_id`),
+  KEY `pet_id` (`pet_id`),
+  KEY `motive_end_relation` (`motive_end_relation_id`),
+  CONSTRAINT `owners_pets_ibfk_2` FOREIGN KEY (`pet_id`) REFERENCES `pets` (`id`),
+  CONSTRAINT `owners_pets_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `owners` (`id`),
+  CONSTRAINT `owners_pets_ibfk_4` FOREIGN KEY (`motive_end_relation_id`) REFERENCES `motive_end_relation` (`id`)
+);
+
+CREATE TABLE `veterinarians_pets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `veterinarian_id` int(11) NOT NULL,
+  `pet_id` int(11) NOT NULL,
+  `consultation_date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pet_id` (`pet_id`),
+  KEY `veterinarian_id` (`veterinarian_id`),
+  CONSTRAINT `veterinarians_pets_ibfk_1` FOREIGN KEY (`veterinarian_id`) REFERENCES `veterinarians` (`id`),
+  CONSTRAINT `veterinarians_pets_ibfk_2` FOREIGN KEY (`pet_id`) REFERENCES `pets` (`id`)
+);
+
+CREATE TABLE `motive_end_relation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `motive` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+);
