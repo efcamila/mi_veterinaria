@@ -41,9 +41,9 @@ class Alta extends BaseController
         $validation = service('validation');
         $validation->setRules(
             [
-                'nameOwner' => 'required|min_length[3]|max_length[20]|alpha_space',
-                'surname' => 'required|min_length[3]|max_length[30]|alpha_space',
-                'address' => 'required|min_length[3]|max_length[30]|alpha_numeric_space',
+                'nameOwner' => 'required|min_length[3]|max_length[20]|regex_match[/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ]*$/u]',
+                'surname' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ]*$/u]',
+                'address' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ 0-9]*$/u]',
                 'phone_number' => 'required|min_length[8]|max_length[15]|numeric',
             ],
             [
@@ -51,19 +51,19 @@ class Alta extends BaseController
                     'required' => 'El campo nombre es obligatorio',
                     'min_length' => 'La longitud minima es 3',
                     'max_length' => 'La longitud maxima es 20',
-                    'alpha_space' => 'Solo puede ser caracteres alfabéticos y el espacio'
+                    'regex_match' => 'Solo puede ser caracteres alfabéticos y el espacio'
                 ],
                 'surname' => [
                     'required' => 'El campo apellido es obligatorio',
                     'min_length' => 'La longitud minima es 3',
                     'max_length' => 'La longitud maxima es 30',
-                    'alpha_space' => 'Solo puede ser caracteres alfabéticos y el espacio'
+                    'regex_match' => 'Solo puede ser caracteres alfabéticos y el espacio'
                 ],
                 'address' => [
                     'required' => 'El campo dirección es obligatorio',
                     'min_length' => 'La longitud minima es 3',
                     'max_length' => 'La longitud maxima es 30',
-                    'alpha_numeric_space' => 'Solo puede ser caracteres alfanúmericos y el espacio'
+                    'regex_match' => 'Solo puede ser caracteres alfanúmericos y el espacio'
                 ],
                 'phone_number' => [
                     'required' => 'El campo teléfono es obligatorio',
@@ -99,8 +99,8 @@ class Alta extends BaseController
         $validation = service('validation');
         $validation->setRules(
             [
-                'namePet' => 'required|min_length[3]|max_length[20]|alpha_space',
-                'race' => 'required|min_length[3]|max_length[30]|alpha_space',
+                'namePet' => 'required|min_length[3]|max_length[20]|regex_match[/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ]*$/u]',
+                'race' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ]*$/u]',
                 'age' => 'required|min_length[1]|max_length[2]|numeric',
             ],
             [
@@ -108,13 +108,13 @@ class Alta extends BaseController
                     'required' => 'El campo nombre es obligatorio',
                     'min_length' => 'La longitud minima es 3',
                     'max_length' => 'La longitud maxima es 20',
-                    'alpha_space' => 'Solo puede ser caracteres alfabéticos y el espacio'
+                    'regex_match' => 'Solo puede ser caracteres alfabéticos y el espacio'
                 ],
                 'race' => [
                     'required' => 'El campo raza es obligatorio',
                     'min_length' => 'La longitud minima es 3',
                     'max_length' => 'La longitud maxima es 30',
-                    'alpha_space' => 'Solo puede ser caracteres alfabéticos y el espacio'
+                    'regex_match' => 'Solo puede ser caracteres alfabéticos y el espacio'
                 ],
                 'age' => [
                     'required' => 'El campo edad es obligatorio',
@@ -149,9 +149,9 @@ class Alta extends BaseController
         $validation = service('validation');
         $validation->setRules(
             [
-                'nameVeterinarian' => 'required|min_length[3]|max_length[20]|alpha_space',
-                'surnameVeterinarian' => 'required|min_length[3]|max_length[30]|alpha_space',
-                'speciality' => 'required|min_length[3]|max_length[30]|alpha_space',
+                'nameVeterinarian' => 'required|min_length[3]|max_length[20]|regex_match[/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ]*$/u]',
+                'surnameVeterinarian' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ]*$/u]',
+                'speciality' => 'required|min_length[3]|max_length[30]|regex_match[/^[a-zñáéíóúüA-ZÑÁÉÍÓÚÜ ]*$/u]',
                 'phone_numberVeterinarian' => 'required|min_length[8]|max_length[15]|numeric',
                 'admission_date' => 'required',
             ],
@@ -160,20 +160,20 @@ class Alta extends BaseController
                     'required' => 'El campo nombre es obligatorio',
                     'min_length' => 'La longitud minima es 3',
                     'max_length' => 'La longitud maxima es 20',
-                    'alpha_space' => 'Solo puede ser caracteres alfabéticos y el espacio'
+                    'regex_match' => 'Solo puede ser caracteres alfabéticos y el espacio'
                 ],
 
                 'surnameVeterinarian' => [
                     'required' => 'El campo apellido es obligatorio',
                     'min_length' => 'La longitud minima es 3',
                     'max_length' => 'La longitud maxima es 30',
-                    'alpha_space' => 'Solo puede ser caracteres alfabéticos y el espacio'
+                    'regex_match' => 'Solo puede ser caracteres alfabéticos y el espacio'
                 ],
                 'speciality' => [
-                    'required' => 'El campo dirección es obligatorio',
+                    'required' => 'El campo especialidad es obligatorio',
                     'min_length' => 'La longitud minima es 3',
                     'max_length' => 'La longitud maxima es 30',
-                    'alpha_space' => 'Solo puede ser caracteres alfabéticos y el espacio'
+                    'regex_match' => 'Solo puede ser caracteres alfabéticos y el espacio'
                 ],
                 'phone_numberVeterinarian' => [
                     'required' => 'El campo teléfono es obligatorio',

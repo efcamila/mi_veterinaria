@@ -77,7 +77,7 @@
                             <tr>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellido</th>
-                                <th scope="col">Direccion</th>
+                                <th scope="col">Dirección</th>
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Fecha de registro</th>
                             </tr>
@@ -147,7 +147,11 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary mb-3" name="search_pet">Buscar</button>
+                        <?php if(isset($pet_owner) && $pet_owner==0) {
+                                    echo '<p style="color:red">No se encontraron resultados</p>';
+                            }?>
                     </form>
+                    <?php if(isset($pet_name) && !empty($pet_name)){?><h5 class="mb-3">Resultados sobre <?=$pet_name['name']?></h5><?php }?>
                     <table class="table">
                         <thead>
                             <tr>
@@ -159,7 +163,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (isset($pet_owner)){ 
+                            <?php if (isset($pet_owner) && $pet_owner!=0){ 
                                 foreach($pet_owner as $po){?>
                                 <tr>
                                     <td scope="row"><?= $po['nameP'] ?></th>
@@ -201,7 +205,11 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary mb-3" name="search_owner">Buscar</button>
+                        <?php if(isset($owner_pet) && $owner_pet==0) {
+                                    echo '<p style="color:red">No se encontraron resultados</p>';
+                        }?>
                     </form>
+                    <?php if(isset($owner_name) && !empty($owner_name)){?><h5 class="mb-3">Resultados sobre <?=$owner_name['name'].' '.$owner_name['surname'] ?></h5><?php }?>
                     <table class="table">
                         <thead>
                             <tr>
@@ -213,7 +221,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (isset($owner_pet)){ 
+                            <?php if (isset($owner_pet) && $owner_pet!=0){ 
                                 foreach($owner_pet as $op){?>
                                 <tr>
                                     <td scope="row"><?= $op['nameO'].' '.$op['surname'] ?></td>
@@ -255,7 +263,11 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary mb-3" name="search_veterinarian">Buscar</button>
+                        <?php if(isset($veterinarian_pet) && $veterinarian_pet==0) {
+                                    echo '<p style="color:red">No se encontraron resultados</p>';
+                        }?>
                     </form>
+                    <?php if(isset($veterinarian_name) && !empty($veterinarian_name)){?><h5 class="mb-3">Resultados sobre <?=$veterinarian_name['name'].' '.$veterinarian_name['surname'] ?></h5><?php }?>
                     <table class="table">
                         <thead>
                             <tr>
@@ -267,7 +279,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (isset($veterinarian_pet)){ 
+                            <?php if (isset($veterinarian_pet) && $veterinarian_pet!=0){ 
                                 foreach($veterinarian_pet as $vp){?>
                                 <tr>
                                     <td scope="row"><?= $vp['nameV'].' '.$vp['surname'] ?></td>

@@ -26,19 +26,22 @@ class Mostrar extends BaseController
         if (isset($_POST['search_pet'])) {
             $id = $this->request->getPost('pet_id');
             $data['pet_owner'] = $this->searchPet($id);
+            $data['pet_name']=$pet->find($id);
         }
 
         if (isset($_POST['search_owner'])) {
             $id = $this->request->getPost('owner_id');
             $data['owner_pet'] = $this->searchOwner($id);
+            $data['owner_name']=$owner->find($id);
         }
 
         if (isset($_POST['search_veterinarian'])) {
             $id = $this->request->getPost('veterinarian_id');
             $data['veterinarian_pet'] = $this->searchVeterinarian($id);
+            $data['veterinarian_name']=$veterinarian->find($id);
         }
 
-        return view('mostrar', $data);
+       return view('mostrar', $data);
     }
 
     public function searchPet($id)
@@ -47,6 +50,8 @@ class Mostrar extends BaseController
         $where = 'pet_id=' . $id;
         if ($result_pet = $pet->join_owner_pet($where)) {
             return $result_pet;
+        }else{
+            return 0;
         }
     }
 
@@ -56,6 +61,8 @@ class Mostrar extends BaseController
         $where = 'owner_id=' . $id;
         if ($result_owner = $owner->join_owner_pet($where)) {
             return $result_owner;
+        }else{
+            return 0;
         }
     }
 
@@ -65,6 +72,8 @@ class Mostrar extends BaseController
         $where = 'veterinarian_id=' . $id;
         if ($result_veterinarian = $veterinarian->join_veterinarian_pet($where)) {
             return $result_veterinarian;
+        }else{
+            return 0;
         }
     }
 }

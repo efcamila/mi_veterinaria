@@ -33,7 +33,7 @@
             <?php echo '<p style="color:red">' . session('errors.surname') . '</p>' ?>
         </div>
         <div class="mb-3">
-            <label for="adress" class="form-label">Direccion</label>
+            <label for="adress" class="form-label">Dirección</label>
             <input type="text" class="form-control" id="adress" name="address" value="<?=$owner['address']?>">
             <?php echo '<p style="color:red">' . session('errors.address') . '</p>' ?>
         </div>
